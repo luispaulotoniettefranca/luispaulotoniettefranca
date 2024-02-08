@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="Venha fazer parte deste momento - LUIS & LUANA" property="og:title"/>
+    <meta content="https://toniette.github.io/wedding/" property="og:url"/>
+    <meta content="https://toniette.github.io/wedding/invite.webp" property="og:image"/>
+    <title>LUIS & LUANA</title>
+    <style>
+        body {
+            background-color: #F7E8E5;
+            height: 100vh;
+            width: 100vw;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .invite {
+            height: 100%;
+            width: auto;
+            max-width: 100vw;
+            max-height: 100vh;
+            object-fit: contain;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .background {
+            background-image: url("invite.webp");
+            filter: blur(50px);
+            -webkit-filter: blur(50px);
+            height: 150vh;
+            width: 150vw;
+            position: fixed;
+            top: -25%;
+            left: -25%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="background"></div>
+<img alt="invite" class="invite" src="invite.webp">
+</body>
+<script>
+    window.onload = function () {
+        document.querySelector("body").addEventListener("click", function () {
+            window.location.href = "https://api.whatsapp.com/send/?phone=5543999100642&text=Ol%C3%A1%21%20Gostaria%20de%20confirmar%20minha%20presen%C3%A7a%20no%20casamento%20de%20Luis%20e%20Luana%2C%20no%20dia%2017%2F06%2F2023%20%C3%A0s%2016%20horas%20na%20igreja%20matriz%20de%20S%C3%A3o%20Jos%C3%A9%20da%20Boa%20Vista%20-%20PR";
+        });
+    }
+</script>
+</html>

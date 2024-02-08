@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TONIETTE SQL INJECTION</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/default.min.css">
+    <link rel="stylesheet"
+          href="https://highlightjs.org/static/demo/styles/github-dark.css">
+    <style>
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        pre {
+            overflow: hidden;
+        }
+
+        hr {
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+
+        .tab {
+            tab-size: 4;
+        }
+    </style>
+</head>
+<body data-bs-theme="dark">
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <h1>SQL INJECTION</h1>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <ul>
+                <li>SQL injection is a code injection technique that might destroy your database.</li>
+                <li>SQL injection is one of the most common web hacking techniques.</li>
+                <li>SQL injection is the placement of malicious code in SQL statements.</li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                SQL IN WEB PAGES
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                SQL injection usually occurs when you ask a user for input, like their username/userid, and instead of a name/id, the user gives you an SQL statement that you will unknowingly run on your database.
+            </p>
+            <p>
+                Look at the following example which creates a SELECT statement by adding a variable (txtUserId) to a select string. The variable is fetched from user input (getRequestString):
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">JS</h5>
+                    <pre>
+                        <code class="hljs language-javascript">
+                            txtUserId = getRequestString("UserId");
+                            txtSQL = "SELECT * FROM Users WHERE UserId = " + txtUserId;
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                SQL INJECTION BASED ON 1=1 IS ALWAYS TRUE
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                Look at the example above again. The original purpose of the code was to create an SQL statement to select a user, with a given user id.
+            </p>
+            <p>
+                If there is nothing to prevent a user from entering "wrong" input, the user can enter some "smart" input like this:
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label class="d-none" for="example1"></label>
+                <input type="text" class="form-control text-dark" id="example1" placeholder="UserId" value="105 OR 1=1">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">SQL</h5>
+                    <pre>
+                        <code class="hljs language-sql">
+                            SELECT * FROM Users WHERE UserId = <span id="example1sync">105 OR 1=1</span>;
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>The SQL above is valid and will return ALL rows from the "Users" table, since <b>OR 1=1</b> is always
+                TRUE.</p>
+            <p>Does the example above look dangerous? What if the "Users" table contains names and passwords?</p>
+            <p>The SQL statement above is much the same as this:</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                USING COMMENTS TO BYPASS CONDITIONS
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                Terminating the query properly is one of the main difficulties an attacker may encounter while testing.
+            </p>
+            <p>
+                Frequently, the problem comes from what follows the integrated user parameter.
+            </p>
+            <p>
+                This SQL segment is part of the query and the malicious input must be crafted to handle it without
+                generating syntax errors.
+            </p>
+            <p>
+                You can see below an example of how to use comments to bypass consecutive conditions.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label class="d-none" for="example3"></label>
+                <input class="form-control text-dark" id="example3" placeholder="UserId" type="text"
+                       value="105 OR 1=1 --">
+            </div>
+            <div class="form-group">
+                <label class="d-none" for="example4"></label>
+                <input class="form-control text-dark mt-2" id="example4" placeholder="UserPass" type="text"
+                       value="1234">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">SQL</h5>
+                    <pre>
+                        <code class="hljs language-sql">
+                            SELECT * FROM Users WHERE UserId = <span id="example3sync">105 OR 1=1 --</span> AND UserPass = <span
+                                id="example4sync">1234</span>;
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                By using line commenting, the attacker eliminates the last condition and does not even have to handle
+                it.
+            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                SQL INJECTION BASED ON BATCHED SQL STATEMENTS
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>Most databases support batched SQL statement.</p>
+            <p>A batch of SQL statements is a group of two or more SQL statements, separated by semicolons.</p>
+            <p>The SQL statement below will return all rows from the "Users" table, then delete the "Suppliers" table.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">JS</h5>
+                    <pre>
+                        <code class="hljs language-javascript">
+                            txtUserId = getRequestString("UserId");
+                            txtSQL = "SELECT * FROM Users WHERE UserId = " + txtUserId;
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label class="d-none" for="example2"></label>
+                <input type="text" class="form-control text-dark" id="example2" placeholder="UserId" value="105; DROP TABLE Suppliers">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">SQL</h5>
+                    <pre>
+                        <code class="hljs language-sql">
+                            SELECT * FROM Users WHERE UserId = <span id="example2sync">105; DROP TABLE Suppliers</span>;
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                USE SQL PARAMETERS FOR PROTECTION
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>To protect a website from SQL injection, you can use SQL parameters.</p>
+            <p>SQL parameters are values that are added to an SQL query at execution time, in a controlled manner.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">C#</h5>
+                    <pre>
+                        <code class="hljs language-csharp">
+                            txtUserId = getRequestString("UserId");
+                            txtSQL = "SELECT * FROM Users WHERE UserId = @0";
+                            db.Execute(txtSQL,txtUserId);
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>Note that parameters are represented in the SQL statement by a <b>@</b> marker.</p>
+            <p>The SQL engine checks each parameter to ensure that it is correct for its column and are treated literally, and not as part of the SQL to be executed.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">C#</h5>
+                    <pre>
+                        <code class="hljs language-csharp">
+                            txtUserId = getRequestString("UserId");
+                            sql = "SELECT * FROM Customers WHERE CustomerId = @0";
+                            command = new SqlCommand(sql);
+                            command.Parameters.AddWithValue("@0",txtUserId);
+                            command.ExecuteReader();
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">PHP</h5>
+                    <pre>
+                        <code class="hljs language-php">
+                            $stmt = $dbh->prepare("INSERT INTO Customers (CustomerName,Address,City) VALUES (:nam, :add, :cit)");
+                            $stmt->bindParam(':nam', $txtNam);
+                            $stmt->bindParam(':add', $txtAdd);
+                            $stmt->bindParam(':cit', $txtCit);
+                            $stmt->execute();
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <small class="text-muted">
+                MADE WITH ❤️ BY <a href="https://toniette.github.io/" target="_blank">LUIS TONIETTE</a>
+            </small>
+        </div>
+    </div>
+    <hr>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+        crossorigin="anonymous"></script>
+<script>
+    $('.hljs').each(function () {
+        $(this).html($(this).html().replace(/^ +/gm, '').trim());
+    });
+
+    /** @var hljs */
+    hljs.highlightAll();
+
+    $('input').on('input', function () {
+        $('#' + this.getAttribute('id') + 'sync').text(this.value);
+        hljs.highlightAll();
+    })
+</script>
+</body>
+</html>
