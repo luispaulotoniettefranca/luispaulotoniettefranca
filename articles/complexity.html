@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TONIETTE SQL INJECTION</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/default.min.css">
+    <link rel="stylesheet"
+          href="https://highlightjs.org/static/demo/styles/github-dark.css">
+    <style>
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        pre {
+            overflow: hidden;
+        }
+
+        hr {
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+
+        .tab {
+            tab-size: 4;
+        }
+    </style>
+</head>
+<body data-bs-theme="dark">
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <h1>SOFTWARE COMPLEXITY AND MAINTAINABILITY</h1>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+           <p>
+               Developing software is a task full of challenges,
+               spanning from conception to implementation and maintenance.
+               In this article, we will delve into the complexities associated with
+               software development, highlighting types of complexity, presenting
+               techniques for measurement and reduction, and delving into fundamental
+               principles for creating efficient and sustainable systems.
+           </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                TYPES OF COMPLEXITY
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+           <p>
+               Within the realm of software development, it is crucial to comprehend different
+               dimensions of complexity to create effective and sustainable systems.
+               We will address three main types:
+           </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>
+                1. CYCLOMATIC COMPLEXITY
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                Cyclomatic complexity is related to the number of independent paths in code.
+                Tools like Sonar are invaluable for measuring this complexity
+                and identifying areas open to improvement.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>
+                2. COGNITIVE COMPLEXITY
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                It refers to the difficulty a developer may have in understanding and maintaining code.
+                Reducing this complexity is crucial for facilitating collaboration
+                and the evolution of software over time.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>
+                3. COMPUTATIONAL COMPLEXITY
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                Linked to software performance, computational complexity involves appropriate
+                choices of data structures and algorithms. Efficiency in problem-solving is
+                essential to ensure system performance.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                MEASUREMENT OF COMPLEXITY
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                The Sonar tool is a valuable ally in the process of measuring source code complexity.
+                By providing clear metrics, it enables a more precise understanding
+                of areas that require attention.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                TECHNIQUES FOR COMPLEXITY REDUCTION
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>
+                REDUCING CYCLOMATIC COMPLEXITY
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ol>
+                <li>
+                    <b>Refactoring: </b>
+                    Break down large functions or methods into smaller units, each with a single responsibility.
+                </li>
+                <li>
+                    <b>Avoid too many nested loops: </b>
+                    Simplify or separate complex loops into independent functions.
+                </li>
+                <li>
+                    <b>Minimize the use of conditionals: </b>
+                    Opt for polymorphism or lookup tables to replace long chains of conditionals.
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>
+                REDUCING COGNITIVE COMPLEXITY
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ol>
+                <li>
+                    <b>Write readable code: </b>
+                    Use variable and function names that clearly describe their functionalities.
+                </li>
+                <li>
+                    <b>Comment your code: </b>
+                    Well-written comments can clarify the purpose and operation of the code.
+                </li>
+                <li>
+                    <b>Follow SOLID principles: </b>
+                    These object-oriented principles help make the code more understandable and easy to maintain.
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>
+                REDUCING COMPUTATIONAL COMPLEXITY
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+
+            <ol>
+                <li>
+                    <b>Choose the correct data structure: </b>
+                    Proper selection of data structures can significantly impact computational complexity.
+                </li>
+                <li>
+                    <b>Use efficient algorithms: </b>
+                    Opt for the algorithm with the best computational complexity to solve a problem.
+                </li>
+                <li>
+                    <b>Utilize parallel or distributed processing: </b>
+                    When possible, divide the problem into parallelizable sub-problems to improve runtime.
+                </li>
+            </ol>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                COHESION AND COUPLING
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                In addition to specific complexity reduction techniques,
+                it is crucial to consider fundamental design principles:
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>SOLID PRINCIPLES</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Among specific approaches to complexity reduction, SOLID principles deserve special
+            mention. These object-oriented principles were formulated to promote cohesion,
+            flexibility, and ease of maintenance in code
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ul style="list-style: none">
+                <li>
+                    <b>S - Single Responsibility Principle: </b>
+                    A class should have only one reason to change, meaning it should have only one responsibility.
+                    This promotes cohesion, making classes clearer and easier to understand.
+                </li>
+                <li>
+                    <b>O - Open/Closed Principle: </b>
+                    A class should be open for extension but closed for modification. This means you can extend
+                    the behavior of a class without altering its source code, favoring flexibility.
+                </li>
+                <li>
+                    <b>L - Liskov Substitution Principle: </b>
+                    Subtypes should be substitutable for their base types without altering program correctness.
+                    This ensures that derived classes can be used in place of their base
+                    classes without introducing errors.
+                </li>
+                <li>
+                    <b>I - Interface Segregation Principle: </b>
+                    A class should not be forced to implement interfaces it does not use. This prevents a class
+                    from having unnecessary responsibilities, promoting a more cohesive design.
+                </li>
+                <li>
+                    <b>D - Dependency Inversion Principle: </b>
+                    High-level modules should not depend on low-level modules; both should depend on abstractions.
+                    Additionally, abstractions should not depend on details, but details should depend on abstractions.
+                    This principle promotes a flexible and change-resistant architecture.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>DRY (Don't Repeat Yourself)</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                Avoid code duplication to enhance maintenance.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>KISS (Keep It Stupidly Simple)</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                Simplicity is valuable; avoid unnecessary complexity.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>YAGNI (You Ain't Gonna Need It)</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                Do not implement features that are not currently necessary, avoiding unnecessary complexity.
+            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <p>
+                By applying these techniques and principles, developers can address the complexities of software
+                development more effectively, creating more robust and sustainable systems over time.
+            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <small class="text-muted">
+                MADE WITH ❤️ BY <a href="https://toniette.github.io/" target="_blank">LUIS TONIETTE</a>
+            </small>
+        </div>
+    </div>
+    <hr>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+        crossorigin="anonymous"></script>
+<script>
+    $('.hljs').each(function () {
+        $(this).html($(this).html().replace(/^ +/gm, '').trim());
+    });
+
+    /** @var hljs */
+    hljs.highlightAll();
+
+    $('input').on('input', function () {
+        $('#' + this.getAttribute('id') + 'sync').text(this.value);
+        hljs.highlightAll();
+    })
+</script>
+</body>
+</html>
