@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TONIETTE SQL INJECTION</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/default.min.css">
+    <link rel="stylesheet"
+          href="https://highlightjs.org/static/demo/styles/github-dark.css">
+    <style>
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            text-align: justify;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        pre {
+            overflow: hidden;
+        }
+
+        hr {
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+    </style>
+</head>
+<body data-bs-theme="dark">
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <h1>SOFTWARE COMPLEXITY AND MAINTAINABILITY</h1>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+           <p>
+               Cohesion and coupling are two fundamental principles in software engineering that play a crucial
+               role in determining the overall quality and maintainability of a codebase.
+               Understanding these concepts and applying them effectively is essential for developers
+               to write clean, well-structured code that is easy to understand, modify, and extend.
+           </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                WHAT IS COHESION?
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+           <p>
+               Cohesion refers to the degree to which a single unit of code, such as a function, class,
+               or module, performs a well-defined and focused task. A highly cohesive unit of code is
+               responsible for a specific task and does not handle unrelated or extraneous functionalities.
+               This makes the code easier to understand, maintain, and test.
+           </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                TYPES OF COHESION
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                There are different levels of cohesion, ranging from low to high.
+                Some common types of cohesion include:
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ul>
+                <li>
+                    <b>Accidental Cohesion: </b>
+                    This is the lowest level of cohesion, where the code is grouped together based on
+                    arbitrary criteria, such as physical proximity or developer preference.
+                </li>
+                <li>
+                    <b>Procedural Cohesion: </b>
+                    In procedural cohesion, the code is grouped based on
+                    the common procedure or task it performs. This is an improvement over accidental
+                    cohesion but still not ideal.
+                </li>
+                <li>
+                    <b>Logical Cohesion: </b>
+                    Logical cohesion groups code based on related functions or tasks
+                    that achieve a single goal. This is a significant improvement and is often
+                    considered the minimum acceptable level of cohesion.
+                </li>
+                <li>
+                    <b>Informational Cohesion: </b>
+                    Informational cohesion groups code based on data that is
+                    shared or manipulated by the code. This is a higher level of cohesion,
+                    but it can be difficult to achieve.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                WHAT IS COUPLING?
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+           <p>
+               Coupling refers to the degree to which a unit of code depends on other units of code.
+               In other words, it measures how tightly coupled one part of the code is to other parts.
+               High coupling indicates that changes in one unit of code can have a significant impact
+               on other parts of the codebase, making it difficult to modify and maintain.
+           </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                TYPES OF COUPLING
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                There are different levels of coupling, ranging from low to high.
+                Some common types of coupling include:
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ul>
+                <li>
+                    <b>Tight Coupling: </b>
+                    This is the highest level of coupling, where units of code are highly
+                    interdependent and changes in one unit can have a significant impact on others.
+                </li>
+                <li>
+                    <b>Loose Coupling: </b>
+                    In loose coupling, units of code are less interdependent and changes in
+                    one unit have minimal impact on others. This is a desirable goal for software development.
+                </li>
+                <li>
+                    <b>Independent Coupling: </b>
+                    This is the ideal level of coupling, where units of code are completely
+                    independent and have no knowledge or dependencies on each other.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                PROBLEMS CAUSED BY LOW COHESION AND HIGH COUPLING
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                Low cohesion and high coupling can lead to several problems
+                in software development, including:
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ul>
+                <li>
+                    <b>Difficulty understanding and maintaining code: </b>
+                    Code with low cohesion and high coupling is often difficult to understand and
+                    maintain, as it is not clear what each unit of code is responsible for and
+                    how it interacts with other parts of the codebase.
+                </li>
+                <li>
+                    <b>Increased risk of errors: </b>
+                    Changes in one unit of code can easily lead to errors in other parts of the code, especially
+                    in highly coupled systems. This makes the codebase more fragile and difficult to test.
+                </li>
+                <li>
+                    <b>Reduced flexibility and extensibility: </b>
+                    Low cohesion and high coupling make it difficult to modify and extend the codebase,
+                    as changes often require significant rework in other parts of the code.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <h4>
+                TECHNIQUES FOR MINIMIZING LOW COHESION AND HIGH COUPLING
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                There are several techniques that developers can use to
+                minimize low cohesion and high coupling in their code:
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ul>
+                <li>
+                    <b>Follow the Single Responsibility Principle (SRP): </b>
+                    The SRP states that each unit of code should have a single responsibility.
+                    This means that each function, class, or module should perform a well-defined
+                    task and should not handle unrelated or extraneous functionalities.
+                </li>
+                <li>
+                    <b>Use interfaces and abstract classes: </b>
+                    Interfaces and abstract classes can be used to define common behaviors and dependencies
+                    between units of code, promoting loose coupling and allowing for easier extensibility.
+                </li>
+                <li>
+                    <b>Favor dependency injection: </b>
+                    Dependency injection is a technique for providing dependencies to units of code
+                    at runtime rather than hardcoding them. This promotes loose coupling and makes
+                    it easier to test and maintain the code.
+                </li>
+                <li>
+                    <b>Keep functions and methods small: </b>
+                    Smaller functions and methods are generally easier to understand and maintain,
+                    and they are less likely to perform multiple tasks or violate the SRP.
+                </li>
+                <li>
+                    <b>Use meaningful variable names and comments: </b>
+                    Well-named variables and comments can significantly improve the readability
+                    and understandability of the code, making it easier to identify and address cohesion
+                    and coupling issues.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <h5>EXAMPLE 1: CALCULATING ORDER TOTAL</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">BEFORE</h5>
+                    <pre>
+                        <code class="hljs language-php tab">
+                            function calculateOrderTotal($cartItems) {
+                                &emsp;&emsp;$subtotal = 0;
+
+                                &emsp;&emsp;foreach ($cartItems as $cartItem) {
+                                &emsp;&emsp;&emsp;&emsp;$subtotal += $cartItem['price'] * $cartItem['quantity'];
+                                &emsp;&emsp;}
+
+                                &emsp;&emsp;$discount = calculateDiscount($subtotal);
+                                &emsp;&emsp;$shipping = calculateShipping($cartItems);
+                                &emsp;&emsp;$total = $subtotal - $discount + $shipping;
+
+                                &emsp;&emsp;return $total;
+                            }
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">AFTER</h5>
+                    <pre>
+                        <code class="hljs language-php tab">
+                            class Order {
+                            &emsp;&emsp;public function __construct(
+                            &emsp;&emsp;&emsp;&emsp;private array $cartItems
+                            &emsp;&emsp;) {}
+
+                            &emsp;&emsp;public function calculateSubtotal(): float
+                            &emsp;&emsp;{
+                            &emsp;&emsp;&emsp;&emsp;$subtotal = 0;
+
+                            &emsp;&emsp;&emsp;&emsp;foreach ($this->cartItems as $cartItem) {
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;$subtotal += $cartItem['price'] * $cartItem['quantity'];
+                            &emsp;&emsp;&emsp;&emsp;}
+
+                            &emsp;&emsp;&emsp;&emsp;return $subtotal;
+                            &emsp;&emsp;}
+
+                            &emsp;&emsp;public function calculateDiscount(): float
+                            &emsp;&emsp;{
+                            &emsp;&emsp;&emsp;&emsp;$subtotal = $this->calculateSubtotal();
+                            &emsp;&emsp;&emsp;&emsp;// Apply discount logic based on subtotal
+                            &emsp;&emsp;&emsp;&emsp;$discount = 0; // Placeholder for discount calculation
+
+                            &emsp;&emsp;&emsp;&emsp;return $discount;
+                            &emsp;&emsp;}
+
+                            &emsp;&emsp;public function calculateShipping(): float
+                            &emsp;&emsp;{
+                            &emsp;&emsp;&emsp;&emsp;// Apply shipping logic based on cart items
+                            &emsp;&emsp;&emsp;&emsp;$shipping = 0; // Placeholder for shipping calculation
+
+                            &emsp;&emsp;&emsp;&emsp;return $shipping;
+                            &emsp;&emsp;}
+
+                            &emsp;&emsp;public function calculateTotal(): float
+                            &emsp;&emsp;{
+                            &emsp;&emsp;&emsp;&emsp;$subtotal = $this->calculateSubtotal();
+                            &emsp;&emsp;&emsp;&emsp;$discount = $this->calculateDiscount();
+                            &emsp;&emsp;&emsp;&emsp;$shipping = $this->calculateShipping();
+
+                            &emsp;&emsp;&emsp;&emsp;$total = $subtotal - $discount + $shipping;
+
+                            &emsp;&emsp;&emsp;&emsp;return $total;
+                            &emsp;&emsp;}
+                            }
+
+                            $order = new Order($cartItems);
+                            $total = $order->calculateTotal();
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>EXPLANATION</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                The original <b>calculateOrderTotal</b> function is highly cohesive as it performs a single task:
+                calculating the total order amount. However, it is tightly coupled to the <b>calculateDiscount</b>
+                and <b>calculateShipping</b> functions, as it directly calls them to calculate the discount
+                and shipping amounts. This coupling makes the code difficult to modify and maintain,
+                as changes to these functions would require changes to the <b>calculateOrderTotal</b>
+                function as well. The refactored code introduces an <b>Order</b> class that encapsulates
+                the order data and provides separate methods for calculating the subtotal, discount,
+                shipping, and total. This approach improves cohesion as each method has a single
+                responsibility and is not directly dependent on other methods. The use of an object-oriented
+                approach also promotes loose coupling, as the <b>Order</b> class can be used independently of the
+                discount and shipping calculation logic.
+            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <h5>EXAMPLE 2: SENDING EMAIL NOTIFICATIONS</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">BEFORE</h5>
+                    <pre>
+                        <code class="hljs language-php tab">
+                            function sendOrderConfirmationEmail($orderId) {
+                            &emsp;&emsp;$orderDetails = getOrderDetails($orderId);
+                            &emsp;&emsp;$userEmail = getUserEmail($orderId);
+
+                            &emsp;&emsp;$emailSubject = "Order Confirmation";
+                            &emsp;&emsp;$emailBody = "Thank you for your order! Your order details are as follows:";
+
+                            &emsp;&emsp;foreach ($orderDetails as $orderItem) {
+                            &emsp;&emsp;&emsp;&emsp;$emailBody .= $orderItem['product_name'] . " x " . $orderItem['quantity'];
+                            &emsp;&emsp;}
+
+                            &emsp;&emsp;$emailBody .= "Total: $" . $orderDetails['total'];
+
+                            &emsp;&emsp;sendEmail($userEmail, $emailSubject, $emailBody);
+                            }
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">AFTER</h5>
+                    <pre>
+                        <code class="hljs language-php tab">
+                            class OrderNotificationService {
+                            &emsp;&emsp;public function __construct(
+                            &emsp;&emsp;&emsp;&emsp;private OrderService $orderService,
+                            &emsp;&emsp;&emsp;&emsp;private EmailService $emailService
+                            &emsp;&emsp;) {}
+
+                            &emsp;&emsp;public function sendOrderConfirmationEmail($orderId) {
+                            &emsp;&emsp;&emsp;&emsp;$orderDetails = $this->orderService->getOrderDetails($orderId);
+                            &emsp;&emsp;&emsp;&emsp;$userEmail = $this->orderService->getUserEmail($orderId);
+
+                            &emsp;&emsp;&emsp;&emsp;$emailSubject = "Order Confirmation";
+                            &emsp;&emsp;&emsp;&emsp;$emailBody = $this->generateEmailBody($orderDetails);
+
+                            &emsp;&emsp;&emsp;&emsp;$this->emailService->sendEmail($userEmail, $emailSubject, $emailBody);
+                            &emsp;&emsp;}
+
+                            &emsp;&emsp;private function generateEmailBody($orderDetails) {
+                            &emsp;&emsp;&emsp;&emsp;$emailBody = "Thank you for your order! Your order details are as follows:";
+
+                            &emsp;&emsp;&emsp;&emsp;foreach ($orderDetails as $orderItem) {
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;$emailBody .= $orderItem['product_name'] . " x " . $orderItem['quantity'];
+                            &emsp;&emsp;&emsp;&emsp;}
+
+                            &emsp;&emsp;&emsp;&emsp;$emailBody .= "Total: $" . $orderDetails['total'];
+
+                            &emsp;&emsp;&emsp;&emsp;return $emailBody;
+                            &emsp;&emsp;}
+                            }
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>EXPLANATION</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                The original <b>sendOrderConfirmationEmail</b> function is tightly
+                coupled to several external functions and services, making it difficult to understand,
+                maintain, and test. It directly calls <b>getOrderDetails</b>
+                and <b>getUserEmail</b> to retrieve order and user information,
+                and it uses <b>sendEmail</b> to send the
+                email notification. This tightly coupled approach makes it challenging to modify or replace any
+                of these components without affecting the <b>sendOrderConfirmationEmail</b> function.
+                The refactored code introduces an <b>OrderNotificationService</b> class that encapsulates the
+                responsibility of sending order confirmation emails. It utilizes dependency injection to
+                receive instances of <b>OrderService</b> and <b>EmailService</b> through its constructor.
+                This promotes loose coupling, as the <b>OrderNotificationService</b>
+                class does not depend on the specific implementations of these services.
+                The <b>sendOrderConfirmationEmail</b> method in the <b>OrderNotificationService</b> class delegates
+                the retrieval of order and user information to the <b>OrderService</b> instance and delegates
+                the email sending task to the <b>EmailService</b> instance. This separation of concerns improves
+                the cohesion of the <b>sendOrderConfirmationEmail</b> method, as it now focuses solely on
+                coordinating the email notification process.
+                Additionally, the introduction of the <b>generateEmailBody</b> method further enhances the
+                separation of concerns. This method is responsible for generating the email body content,
+                isolating this task from the overall email notification process. This modular approach
+                makes the code more maintainable and easier to extend, as changes to the email body
+                format can be made within the <b>generateEmailBody</b> method without affecting
+                the rest of the code.
+                In summary, the refactored code using the <b>OrderNotificationService</b> class
+                demonstrates improved cohesion and loose coupling compared to the original
+                approach. It separates concerns, promotes modularity, and makes
+                the code more adaptable to changes.
+            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <small class="text-muted">
+                MADE WITH ❤️ BY <a href="https://toniette.github.io/" target="_blank">LUIS TONIETTE</a>
+            </small>
+        </div>
+    </div>
+    <hr>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+        crossorigin="anonymous"></script>
+<script>
+    $('.hljs').each(function () {
+        $(this).html($(this).html().replace(/^ +/gm, '').trim());
+    });
+
+    /** @var hljs */
+    hljs.highlightAll();
+
+    $('input').on('input', function () {
+        $('#' + this.getAttribute('id') + 'sync').text(this.value);
+        hljs.highlightAll();
+    })
+</script>
+</body>
+</html>
